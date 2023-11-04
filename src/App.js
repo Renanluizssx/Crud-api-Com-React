@@ -1,10 +1,11 @@
 import "./App.css";
-import Rotas from "./rotas";
+import Home from "./pages/Home";
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Rotas />
+        <Home />
       </header>
     </div>
   );
