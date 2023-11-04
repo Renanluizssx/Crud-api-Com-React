@@ -16,20 +16,20 @@ function Listar({ id, nome, valor, foto }) {
     del(id);
   }
   function editar(id) {
+    handleShow();
     fetch(`https://profrodolfo.com.br/api/listar/${id}`)
       .then((res) => res.json())
       .then((res) => {
+        console.log(res);
         res.forEach((res) => {
           const valorNome = res.nome;
           const valorPreco = res.valor;
-          console.log(valorPreco);
           const valorUrl = res.foto;
           setValueNome(valorNome);
           setValuePreco(valorPreco);
           setValueFoto(valorUrl);
         });
       });
-    handleShow();
   }
   return (
     <Container>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-
+import { atualizar } from "../serviços";
 function FormularioAtualizar({
   setShow,
   show,
@@ -12,18 +12,20 @@ function FormularioAtualizar({
   valorPreco,
   valorUrl,
 }) {
-  function atualizar(dado) {
-    console.log("nome", nome);
-    console.log("valor", valor);
-    console.log("foto", foto);
-    handleClose();
-  }
-  const [nome, setNome] = useState("");
-  const [valor, setValor] = useState(0);
-  const [foto, setFoto] = useState("");
+  const [nome, setNome] = useState(valorNome);
+  const [valor, setValor] = useState(valorPreco);
+  const [foto, setFoto] = useState(valorUrl);
   const [validated, setValidated] = useState(false);
   const handleClose = () => setShow(false);
-
+  function atualizarProduto() {
+    const produto = {
+      nome: nome,
+      preco: valor,
+      url: foto,
+    };
+    atualizar(produto);
+    handleClose();
+  }
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -83,7 +85,7 @@ function FormularioAtualizar({
               <Button variant="secondary" onClick={handleClose}>
                 Fechar
               </Button>
-              <Button variant="primary" onClick={atualizar}>
+              <Button variant="primary" onClick={atualizarProduto}>
                 Salvar
               </Button>
             </Modal.Footer>
